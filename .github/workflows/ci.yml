@@ -28,12 +28,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  ci-started:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "ci started"
+
   build-test-release:
     name: build-test-release
     uses: "./.github/workflows/build-test-release.yml"
     permissions:
       contents: write
     with: 
+      # create_release becomes true if the event that triggered this workflow is "workflow_dispatch" and inputs.create_release is true
+      # create_release becomes true if the event that triggered this workflow is "push" on main
+      # otherwise create_release becomes false
       create_release: ${{ (github.event_name == 'workflow_dispatch' && inputs.create_release) || github.event_name == 'push'}}
 
   check-code-quality:
@@ -49,7 +57,7 @@ jobs:
 
   ci-passed:
     runs-on: ubuntu-latest
-    needs: [build-test-release, check-code-quality, reuse-compliance, clang-tidy]
+    needs: [ci-started, build-test-release, check-code-quality, reuse-compliance, clang-tidy]
 
     steps:
       - run: echo "ci passed"
