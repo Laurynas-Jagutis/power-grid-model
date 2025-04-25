@@ -172,6 +172,7 @@ auto const batch_update_json = R"json({
 } // namespace
 
 TEST_CASE("API Model") {
+    int unused = 3;
     using namespace std::string_literals;
 
     Options options{};

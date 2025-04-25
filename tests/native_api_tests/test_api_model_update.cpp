@@ -416,6 +416,7 @@ TEST_CASE("API model - all updates") {
 }
 
 TEST_CASE("API model - updates w/ alternating compute mode") {
+    int unused = 3;
     auto const owning_input_dataset = load_dataset(complete_state_json);
     auto const& input_dataset = owning_input_dataset.dataset;
 
