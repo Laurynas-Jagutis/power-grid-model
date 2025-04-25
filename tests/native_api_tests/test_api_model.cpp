@@ -173,6 +173,30 @@ auto const batch_update_json = R"json({
 
 TEST_CASE("API Model") {
     int unused = 3;
+    int unused1 = 3;
+    int unused2 = 3;
+    int unused3 = 3;
+    int unused4 = 3;
+    int unused5 = 3;
+    int unused6 = 3;
+    int unused7 = 3;
+    int unused8 = 3;
+    int unused9 = 3;
+    int unused10 = 3;
+    int unused11 = 3;
+    int unused12 = 3;
+    int unused13 = 3;
+    int unused14 = 3;
+    int unused15 = 3;
+    int unused16 = 3;
+    int unused17 = 3;
+    int unused18 = 3;
+    int unused19 = 3;
+    int unused20 = 3;
+    int unused21 = 3;
+    int unused22 = 3;
+    int unused23 = 3;
+    int unused24 = 3;
     using namespace std::string_literals;
 
     Options options{};
