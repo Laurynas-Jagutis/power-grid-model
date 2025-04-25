@@ -61,6 +61,12 @@ jobs:
           sudo apt-get update && sudo apt-get install -y clang-format-18
           find . -regex '.*\.\(h\|c\|cpp\|hpp\|cc\|cxx\)' -exec clang-format-18 -style=file -i {} \;
 
+      - name: Install and run markdownlint
+        run: |
+          npm install -g markdownlint-cli
+          echo "Running markdownlint"
+          markdownlint --fix .
+
       - name: If needed raise error
         run: |
 
@@ -84,3 +90,19 @@ jobs:
             echo
             echo "All the generated files are up to date."
           fi
+
+      - name: Check test-workflow.yml
+        if: success()
+        run: |
+          git fetch origin main
+          DIFF=$(git diff origin/main -- .github/workflows/test-workflow.yml)
+
+          if [ -n "$DIFF" ]; then
+            echo "The test-workflow.yml file has changed from main."
+            echo "Please revert test-workflow.yml to its original state after testing is completed."
+            echo "$DIFF"
+            exit 1
+          else
+            echo "The test-workflow.yml file matches main."
+          fi
+          
