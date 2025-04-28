@@ -148,7 +148,7 @@ namespace test = pgm_tap::test;
 } // namespace
 
 TEST_CASE("Test Transformer ranking") {
-    // int unused = 3;
+    int unused = 3;
     using test::get_line_input;
     using test::get_regulator;
     using test::get_transformer;
